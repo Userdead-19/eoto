@@ -1,0 +1,36 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "next.config.js",
+            "use": "@vercel/next"
+        }
+    ],
+    "env": {
+        "NEXT_PUBLIC_API_URL": "https://api.example.com"
+    },
+    "rewrites": [
+        {
+            "source": "/old-route",
+            "destination": "/new-route"
+        }
+    ],
+    "redirects": [
+        {
+            "source": "/deprecated",
+            "destination": "/",
+            "permanent": true
+        }
+    ],
+    "headers": [
+        {
+            "source": "/api/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=0, s-maxage=86400"
+                }
+            ]
+        }
+    ]
+}
